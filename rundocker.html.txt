@@ -1,0 +1,90 @@
+<script>
+
+        function checkc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById("i2").innerHTML = this.responseText; }
+  xhttp.open("GET", "http://35.154.74.247:3000/checkpage");
+  xhttp.send();
+}
+        function stopd(){
+        let cnamed=document.getElementById("n3").value;
+        let stopor=document.getElementById("n4").value;
+        const xhttp=new XMLHttpRequest();
+        xhttp.onload = function() {
+                document.getElementById("i3").innerHTML=this.responseText; }
+                        if(stopor == "Stop"){
+                                xhttp.open("GET","http://35.154.74.247:3000/stop?cnamed="+cnamed);
+                                xhttp.send();
+                                }
+                        else if(stopor == "Delete"){
+                                xhttp.open("GET","http://35.154.74.247:3000/delete?cnamed="+cnamed);
+                                xhttp.send();
+                                }
+
+
+
+}
+        function cid() {
+        let cname=document.getElementById("n1").value;
+        let cimage=document.getElementById("n2").value;
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+      document.getElementById("i1").innerHTML = this.responseText; }
+
+    xhttp.open("GET", "http://35.154.74.247:3000/runpage?os_name="+cname+"&image_type="+cimage);
+    xhttp.send();
+  }
+        </script>
+
+<style>
+body {
+  background-color: #cce0ed;
+}
+.center {
+ font-size: 40px;
+        text-align: center;
+}
+.center1{
+ font-size: 25px;
+        color: #1F305E;
+ text-align: center;
+
+}
+
+ .fontinc{
+ font-size: 20px;
+ }
+  h1 {
+  color: #002D62;
+  }
+
+</style>
+
+
+
+<body class="fontinc">
+        <h1 class="center">Container Management System</h1>
+                <h3 class="center1">Launch Containers</h3>
+                Name: <input id="n1" name="os_name"></input><br />
+                Image Type: <select id="n2" name="image_type">
+                                <option>centos</option>
+                                <option>ubuntu</option>
+                                <option>redis</option>
+                </select><br />
+
+        <div border=2px id="i1">Container id will appear here</div>
+        <button onclick=cid() >Click to Launch</button>
+        <div border=2px id="i2">Containers running will appear here</div>
+        <button onclick=checkc()>Refresh</button>
+        <h3 class="center1">Stop and Delete Containers</h3>
+                Name: <input id="n3" name="osd_name"></input><br />
+                Stop or Delete: <select id="n4" name="sod">
+                                <option>Stop</option>
+                                <option>Delete</option>
+                </select><br />
+        <div border=2px id="i3">Deletion Status</div>
+        <button onclick=stopd()>Stop/Delete</button>
+
+
+</body>
